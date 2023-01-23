@@ -3,15 +3,13 @@ class Solution {
     public String solution(String[] participant, String[] completion) {
         Arrays.sort(participant);
         Arrays.sort(completion);
-        LinkedList<String> participantAL = new LinkedList<>(Arrays.asList(participant));
-        ArrayList<String> completionAL = new ArrayList<>(Arrays.asList(completion));
-        // for (String people : participant) participantAL.add(people);
-        // for (String people : completion) participantAL.remove(people);
-        // participantAL.removeAll(completionAL);
-        Iterator<String> it = completionAL.iterator();
-        while (it.hasNext()){
-            participantAL.remove(it.next());
+        String answer = "";
+        int i;
+        for (i=0; i<completion.length; i++){
+            if (!participant[i].equals(completion[i])) {
+                return participant[i];
+            }
         }
-        return participantAL.get(0);
+        return participant[i];
     }
 }
