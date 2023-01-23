@@ -4,11 +4,10 @@ class Solution {
         int answer = 0;
         int i=0;
         Arrays.sort(d);
-        while (budget>0){
-            budget -= d[i];
-            if (budget>=0) answer++;
-            if (budget<0 || i==d.length-1) break;
-            i++;
+        for (int f : d){
+            budget -= f;
+            if (budget < 0) break;
+            answer++;
         }
         return answer;
     }
