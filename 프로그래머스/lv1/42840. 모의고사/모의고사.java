@@ -11,10 +11,11 @@ class Solution {
             if (answers[i]==arr2[i%8]) answer[1]++;
             if (answers[i]==arr3[i%10]) answer[2]++;
         }
-        int max = Math.max(answer[0], Math.max(answer[1], answer[2]));
+        int max = answer[0];
         for (int i=0; i<3 ; i++){
             if (max==answer[i]) rank.add(i+1);
             else if (max<answer[i]){
+                max = answer[i];
                 rank.clear();
                 rank.add(i+1);
             }
