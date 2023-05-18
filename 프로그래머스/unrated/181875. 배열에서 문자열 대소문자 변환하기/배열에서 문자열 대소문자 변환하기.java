@@ -1,12 +1,9 @@
 import java.util.stream.*;
 class Solution {
     public String[] solution(String[] strArr) {
-        IntStream
-			.rangeClosed(0, strArr.length-1)
-			.forEach(i -> {
-				if (i%2 == 0) strArr[i] = strArr[i].toLowerCase();
-				else strArr[i] = strArr[i].toUpperCase();
-			});
-        return strArr;
+        return IntStream
+			.range(0, strArr.length)
+			.mapToObj(i -> i%2 == 0 ? strArr[i].toLowerCase() : strArr[i].toUpperCase())
+            .toArray(String[]::new);
     }
 }
