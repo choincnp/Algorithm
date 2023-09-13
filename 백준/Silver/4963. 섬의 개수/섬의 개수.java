@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -53,7 +54,6 @@ public class Main {
     static void DFS(int x, int y){
         visited[x][y] = true;
         for (int i=0; i<8; i++){
-            for (int j=0; j<8; j++){
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 if (nx >= 0 && ny >= 0 && nx < M && ny < N){
@@ -61,7 +61,6 @@ public class Main {
                         DFS(nx, ny);
                     }
                 }
-            }
         }
     }
 }
