@@ -25,18 +25,14 @@ public class Main {
 			st = new StringTokenizer(br.readLine());
 			for (int j=0; j<M; j++){
 				field[i][j] = Integer.parseInt(st.nextToken());
-				if (field[i][j] == 1) {
-					queue.offer(new int[]{i, j});
-				}
 			}
 		}
-		count = 0;
 		max = 0;
+		count = 0;
 		for (int i=0; i<N; i++){
 			for (int j=0; j<M; j++){
-				if (!visited[i][j] && field[i][j] >= 1){
-					size = 1;
-					DFS(i, j);
+				if (field[i][j]==1 && !visited[i][j]){
+					max = Math.max(max, BFS(i, j));
 					count++;
 				}
 			}
@@ -44,37 +40,25 @@ public class Main {
 		sb.append(count).append("\n").append(max);
 		System.out.println(sb.toString());
 	}
-	static void DFS(int x, int y){
+
+	static int BFS(int x, int y){
+		queue.offer(new int[]{x, y});
 		visited[x][y] = true;
-		for (int i=0; i<4; i++){
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if(nx >= 0 && ny >= 0 && nx < N && ny < M){
-				if (!visited[nx][ny] && field[nx][ny]==1){
-					size++;
-					max = Math.max(max, field[nx][ny]);
-					DFS(nx, ny);
+		size = 1;
+		while (!queue.isEmpty()){
+			int[] point = queue.poll();
+			for (int i=0; i<4; i++){
+				int nx = point[0] + dx[i];
+				int ny = point[1] + dy[i];
+				if (nx >=0 && ny >= 0 && nx < N && ny < M){
+					if (field[nx][ny] == 1 && !visited[nx][ny]){
+						size++;
+						visited[nx][ny] = true;
+						queue.add(new int[]{nx, ny});
+					}
 				}
 			}
 		}
-		max = Math.max(size, max);
+		return size;
 	}
-
-	// static void BFS(){
-	// 	while (!queue.isEmpty()){
-	// 		int[] point = queue.poll();
-	// 		for (int i=0; i<4; i++){
-	// 			int nx = point[0] + dx[i];
-	// 			int ny = point[1] + dy[i];
-	// 			if (nx >=0 && ny >= 0 && nx < N && ny < M){
-	// 				if (field[nx][ny] == 1){
-	//
-	// 					field[nx][ny] = field[point[0]][point[1]] + 1;
-	// 					max = Math.max(field[nx][ny], max);
-	// 					queue.add(new int[]{nx, ny});
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
 }
