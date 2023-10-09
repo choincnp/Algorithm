@@ -21,7 +21,7 @@ public class Main {
 			if (min < pleasure[i]) min = pleasure[i];
 		}
 		int start = min;
-		int end = sum;
+		int end = 10000*100000;
 		// 이거 이분탐색 해야함 누적합 하면 계좌에 다시 넣는거 할수는 있겠는데 복잡하다
 		while (start <= end){
 			int mid = (start + end) / 2;
