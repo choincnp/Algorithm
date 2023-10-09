@@ -6,15 +6,15 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
-		StringBuilder ioi = new StringBuilder("I");
-		while (N-- > 0){
-			ioi.append("OI");
-		}
 		int M = Integer.parseInt(br.readLine());
-		String target = br.readLine();
+		char[] arr = br.readLine().toCharArray();
+		int[] dp = new int[M];
 		int count = 0;
-		for (int i=0; i<target.length()-N-1; i++){
-			if (target.startsWith(ioi.toString(), i)) count++;
+		for (int i = 1; i < M-1; i++) {
+			if(arr[i]=='O'&&arr[i+1]=='I') {
+				dp[i+1] = dp[i-1]+1;
+				if(dp[i+1] >= N && arr[i - 2 * N + 1] == 'I') count++;
+			}
 		}
 		System.out.println(count);
 	}
