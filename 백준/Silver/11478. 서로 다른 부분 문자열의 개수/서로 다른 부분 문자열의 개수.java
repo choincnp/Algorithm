@@ -7,15 +7,22 @@ import java.util.StringTokenizer;
 
 public class Main {
 	static StringTokenizer st;
+	static char[] letter;
+	static Set<String> set = new HashSet<>();
+
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String letter = br.readLine();
-		Set<String> set = new HashSet<>();
-		for (int i=0; i<letter.length(); i++){
-			for (int j=i; j< letter.length(); j++){
-				set.add(letter.substring(i, j+1));
-			}
+		letter = br.readLine().toCharArray();
+		for (int i = 0; i < letter.length; i++){
+			createSubstring("", i);
 		}
 		System.out.println(set.size());
+	}
+
+	static void createSubstring(String current, int index){
+		if (index == letter.length) return;
+		String next = current + letter[index];
+		set.add(next);
+		createSubstring(next, index + 1);
 	}
 }
