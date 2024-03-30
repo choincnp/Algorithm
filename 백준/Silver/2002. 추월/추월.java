@@ -15,22 +15,21 @@ public class Main{
 		for (int i=0; i<carsNum; i++){
 			queue.offer(br.readLine());
 		}
-		//추월차량 대수
-		int over = 0;
 
 		for (int i=0; i<carsNum; i++){
 			// 나온 차량
 			String car = br.readLine();
+			// 이미 추월차량으로 등록됐으면 바로 제낌 (대수만 필요하기 때문)
 			while (!queue.isEmpty() && set.contains(queue.peek())){
 				queue.poll();
 			}
+			// 추월이 발생했을 경우
 			if (!queue.isEmpty() && !queue.peek().equals(car)){
-				over++;
 				set.add(car);
 			} else if (!queue.isEmpty()){
 				queue.poll();
 			}
 		}
-		System.out.println(over);
+		System.out.println(set.size());
 	}
 }
